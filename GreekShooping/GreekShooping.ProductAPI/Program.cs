@@ -14,9 +14,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-var connection = builder.Configuration["MySQLConnection:MySQLConnectionString"];
+var connectionMySQL = builder.Configuration["ConnectionStrings:MySQLConnectionString"];
 
-builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, new MySqlServerVersion(new Version(5,7,22))));
+builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(connectionMySQL, new MySqlServerVersion(new Version(5,7,22))));
+
+builder.Services.AddDbContext<PostgreSQLContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQLConnectionString"), providerOptions => providerOptions.EnableRetryOnFailure());
+
+    options.EnableSensitiveDataLogging();
+});
 
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 
@@ -39,6 +46,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<PostgreSQLContext>();
+    dbContext.Database.Migrate();
 }
 
 app.UseAuthorization();

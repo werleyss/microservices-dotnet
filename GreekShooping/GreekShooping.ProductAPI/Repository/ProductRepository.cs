@@ -8,10 +8,10 @@ namespace GreekShooping.ProductAPI.Repository
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly MySQLContext _context;
+        private readonly PostgreSQLContext _context;
         private IMapper _mapper;
 
-        public ProductRepository(MySQLContext Context, IMapper Mapper)
+        public ProductRepository(PostgreSQLContext Context, IMapper Mapper)
         {
             _context = Context;
             _mapper = Mapper;
