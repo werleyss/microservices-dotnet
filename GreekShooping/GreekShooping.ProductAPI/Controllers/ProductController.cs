@@ -48,7 +48,7 @@ namespace GreekShooping.ProductAPI.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<ProductVO>> Update(int id, [FromBody] ProductVO vo)
         {
-            if (vo == null) return BadRequest();
+            if (vo == null || id != vo.Id) return BadRequest();
 
             var product = await _repository.Update(vo);
 

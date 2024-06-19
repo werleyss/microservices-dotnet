@@ -39,7 +39,7 @@ namespace GreekShooping.Web.Services
 
         public async Task<ProductModel> UpdateProduct(ProductModel model)
         {
-            var response = await _client.PutAsJson(BasePath, model);
+            var response = await _client.PutAsJson($"{BasePath}/{model.Id}", model);
 
             if (!response.IsSuccessStatusCode) throw new Exception("Something went wrong calling the API");
 
