@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GreekShooping.IdentityServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+89d5f63217ac24e28bec19a832aebe605b2a902b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec951033ca1c3cc236355371882423af7264afdf")]
 [assembly: System.Reflection.AssemblyProductAttribute("GreekShooping.IdentityServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GreekShooping.IdentityServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
